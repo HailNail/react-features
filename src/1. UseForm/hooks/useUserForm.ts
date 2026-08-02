@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useLocalStorage from './useLocalStorage';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface FormValues {
   username: string;
