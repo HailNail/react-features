@@ -1,0 +1,30 @@
+name: Frontend CI
+
+# Робот будет запускаться при любом Pull Request в ветку dev
+on:
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  validate-code:
+    runs-on: ubuntu-latest # Проверка запустится на удаленном сервере Linux
+
+    steps:
+      # 1. Скачиваем ваш код из репозитория на сервер проверки
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Устанавливаем Node.js нужной версии
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 3. Устанавливаем зависимости проекта
+      - name: Install dependencies
+        run: npm install --force
+
+      # 4. Запускаем проверку типов TypeScript (если у вас Vite/TS)
+      - name: Check TypeScript types
+        run: npm run build
