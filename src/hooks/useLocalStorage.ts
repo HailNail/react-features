@@ -1,6 +1,6 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 
-const useLocalStorage = <T>(key : string, initialValue : T, delay : number) : [T, Dispatch<SetStateAction<T>>] => {
+const useLocalStorage = <T>(key : string, initialValue : T, delay : number = 300) : [T, Dispatch<SetStateAction<T>>] => {
     const [storedValue, setStoredValue] = useState(() => {
         try {
             const item = localStorage.getItem(key);
@@ -12,13 +12,10 @@ const useLocalStorage = <T>(key : string, initialValue : T, delay : number) : [T
         }
     });
 
-    const [debouncedValue, setDebouncedValue] = useState<T>(storedValue);
-
     useEffect(() => {
         const handler = setTimeout(() => {
             try {
             localStorage.setItem(key, JSON.stringify(storedValue));
-             setDebouncedValue(storedValue);
         } catch (error) {
             const err = error instanceof Error ? error.message : (typeof error === "string" ? error : String(error));
             console.error(err);
@@ -29,7 +26,7 @@ const useLocalStorage = <T>(key : string, initialValue : T, delay : number) : [T
     }, [storedValue, key])
        
 
-    return [debouncedValue, setStoredValue];
+    return [storedValue, setStoredValue];
 }
 
 export default useLocalStorage;
