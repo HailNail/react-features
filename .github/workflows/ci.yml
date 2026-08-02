@@ -21,10 +21,15 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # 3. Устанавливаем зависимости проекта
       - name: Install dependencies
         run: npm install --force
 
-      # 4. Запускаем проверку типов TypeScript (если у вас Vite/TS)
+      - name: Run ESLint (Проверка на баги)
+        run: npm run lint
+
+      - name: Run Prettier Check (Проверка форматирования)
+        run: npm run format:check
+
       - name: Check TypeScript types
         run: npm run build
+
