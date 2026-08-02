@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import useFilterList from '../hooks/useFilterList';
+import useFilterList from './hooks/useFilterListWithPagination';
+import BigUserList from './components/BigUserList';
 
 const UserListFilter18v = () => {
-  const { inputValue, handleSearchChange, filteredUsers } = useFilterList();
-  const displayedUsers = filteredUsers.slice(0, 50);
+  const {
+    inputValue,
+    handleSearchChange,
+    page,
+    setPage,
+    paginatedUsers,
+    totalPages,
+  } = useFilterList();
+  const displayedUsers = paginatedUsers.slice(0, 50);
   const [count, setCount] = useState(0);
 
   return (
@@ -21,17 +29,24 @@ const UserListFilter18v = () => {
         value={inputValue}
         onChange={handleSearchChange}
       />
-      <ul>
-        {displayedUsers.length > 0 ? (
-          displayedUsers.map((user) => (
-            <li key={user.id}>
-              {user.name} - {user.role}
-            </li>
-          ))
-        ) : (
-          <li>No user found</li>
-        )}
-      </ul>
+      <BigUserList users={displayedUsers} />
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button onClick={() => setPage((p) => p - 1)} disabled={page === 1}>
+            Prev
+          </button>
+          <span>
+            {page} / {totalPages}
+          </span>
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            disabled={page === totalPages}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

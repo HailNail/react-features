@@ -1,27 +1,26 @@
-import React, { useMemo } from 'react';
-import useLocalStorage from './useLocalStorage';
-import useDebounce from './useDebounce';
-import { USER_DATA } from '../utils/generateLargeUserList';
+import React, { useDeferredValue, useMemo } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { USER_DATA } from '../../utils/generateLargeUserList';
 
-const useFilterList = () => {
+const useFilterListWithPagination = () => {
   const [inputValue, setInputValue] = useLocalStorage('search_term', '', 300);
 
-  const debounced = useDebounce(inputValue, 500);
+  const deferred = useDeferredValue(inputValue);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
   const filteredUsers = useMemo(() => {
-    const query = debounced.toLocaleLowerCase().trim();
+    const query = deferred.toLocaleLowerCase().trim();
     return USER_DATA.filter(
       (user) =>
         user.name.toLocaleLowerCase().includes(query) ||
         user.role.toLocaleLowerCase().includes(query),
     );
-  }, [debounced]);
+  }, [deferred]);
 
   return { inputValue, handleSearchChange, filteredUsers };
 };
 
-export default useFilterList;
+export default useFilterListWithPagination;

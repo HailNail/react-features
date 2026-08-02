@@ -52,4 +52,4 @@ const generateLargeUserList = (count: number): UserDataForm[] => {
   return users;
 };
 
-export const USER_DATA = generateLargeUserList(2000);
+export const USER_DATA = generateLargeUserList(20000);
