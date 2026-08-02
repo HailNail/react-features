@@ -1,6 +1,6 @@
 import React, { useDeferredValue, useMemo } from 'react';
-import useLocalStorage from './useLocalStorage';
-import { USER_DATA } from '../utils/generateLargeUserList';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { USER_DATA } from '../../utils/generateLargeUserList';
 
 const useFilterListWithPagination = () => {
   const [inputValue, setInputValue] = useLocalStorage('search_term', '', 300);

@@ -1,8 +1,7 @@
 import React, { useDeferredValue, useMemo, useState } from 'react';
-import useLocalStorage from './useLocalStorage';
-import { USER_DATA } from '../utils/generateLargeUserList';
-
-const ITEMS_FOR_PAGE = 50;
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { USER_DATA } from '../../utils/generateLargeUserList';
+import { ITEMS_PER_PAGE } from '../../constants/PAGES';
 
 const useFilterListWithPagination = () => {
   const [inputValue, setInputValue] = useLocalStorage('search_term', '', 300);
@@ -25,13 +24,20 @@ const useFilterListWithPagination = () => {
   }, [deferred]);
 
   const paginatedUsers = useMemo(() => {
-    const staerIndex = (page - 1) * ITEMS_FOR_PAGE;
-    return filteredUsers.slice(staerIndex, staerIndex + ITEMS_FOR_PAGE)
+    const staerIndex = (page - 1) * ITEMS_PER_PAGE;
+    return filteredUsers.slice(staerIndex, staerIndex + ITEMS_PER_PAGE);
   }, [filteredUsers, page]);
 
-  const totalPages = Math.ceil(filteredUsers.length / ITEMS_FOR_PAGE);
+  const totalPages = Math.ceil(filteredUsers.length / ITEMS_PER_PAGE);
 
-  return { inputValue, page, setPage, handleSearchChange, paginatedUsers, totalPages };
+  return {
+    inputValue,
+    page,
+    setPage,
+    handleSearchChange,
+    paginatedUsers,
+    totalPages,
+  };
 };
 
 export default useFilterListWithPagination;
