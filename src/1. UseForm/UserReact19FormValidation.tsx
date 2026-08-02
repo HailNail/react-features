@@ -1,4 +1,4 @@
-import { startTransition, useActionState, useEffect, useState } from "react"
+import { startTransition, useActionState, useEffect } from "react"
 import useUserForm19v, { type FormState } from "../hooks/useUserForm19v";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -7,7 +7,6 @@ const UserReact19FormValidation = () => {
         username: "",
         email: ""
     }, 300);
-    const [inputValue, setInputValue] = useState(draft);
 
     const initialValues : FormState = {
         errors: {},
@@ -23,13 +22,9 @@ const UserReact19FormValidation = () => {
         }
     }, [state.successMessage, setDraft]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const updateField = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
-           const nextState = { ...inputValue, [name]: value };
-            setInputValue(nextState);
-        startTransition(() => {
-            setDraft(nextState);
-        })
+            setDraft(prev => ({...prev, [name]: value}));
     }
 
     return (
@@ -38,12 +33,12 @@ const UserReact19FormValidation = () => {
                 {state.successMessage && <div className="success">{state.successMessage}</div>}
                 <div>
                     <label htmlFor="username">Username:</label>
-                    <input type="text" name="username" id="username" value={inputValue.username} onChange={handleChange}  placeholder="Username" disabled={isPending} />
+                    <input type="text" name="username" id="username" value={draft.username} onChange={updateField}  placeholder="Username" disabled={isPending} />
                     {state.errors.username && <span className="error">{state.errors.username}</span>}
                 </div>
                  <div>
                     <label htmlFor="email">Email:</label>
-                    <input type="text" name="email" id="email" value={inputValue.email} onChange={handleChange}  placeholder="Email" disabled={isPending} />
+                    <input type="text" name="email" id="email" value={draft.email} onChange={updateField}  placeholder="Email" disabled={isPending} />
                     {state.errors.email && <span className="error">{state.errors.email}</span>}
                 </div>
                 <button type="submit" disabled={isPending}>{isPending ? "Saving..." : "Save"}</button>

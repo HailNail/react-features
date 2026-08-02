@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from "react";
+import React, {  useState } from "react";
 import useLocalStorage from "./useLocalStorage";
 
 interface FormValues {
@@ -13,20 +13,14 @@ const useUserForm = () => {
         username: "",
         email: ""
     }, 300);
-    const [localValues, setLocalValues] = useState(values);
     const [errors, setErrors] = useState<Partial<FormValues>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [serverError, setServerError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState("");
 
-     useEffect(() => {
-        setLocalValues(values);
-    }, [values]);
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setValues(prev => ({...prev, [name]: value}));
-        setLocalValues(prev => ({ ...prev, [name]: value }));
         setErrors(prev => ({...prev, [name]: ""}));
         setServerError(null);
     }
@@ -78,7 +72,7 @@ const useUserForm = () => {
     };
 
     return {
-        values : localValues,
+        values,
         errors,
         isSubmitting,
         serverError,
