@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import useLocalStorage from './useLocalStorage';
-import { USER_DATA } from '../2. FilteringList/UserListFilterClassExpanded';
 import useDebounce from './useDebounce';
+import { USER_DATA } from '../utils/generateLargeUserList';
 
 const useFilterList = () => {
   const [inputValue, setInputValue] = useLocalStorage('search_term', '', 300);
