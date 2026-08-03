@@ -60,10 +60,10 @@ const UserListFilter19v = () => {
         </button>
         <span>Page: {page}</span>
         <button
-          onClick={() => setPage((p) => p - 1)}
-          disabled={page <= Math.ceil(filteredList.length / ITEMS_PER_PAGE)}
+          onClick={() => setPage((p) => p + 1)}
+          disabled={page >= Math.ceil(filteredList.length / ITEMS_PER_PAGE)}
         >
-          Prev
+          Next
         </button>
       </div>
     </div>
