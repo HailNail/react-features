@@ -1,4 +1,4 @@
-import UserReact18FromValidation from './1. UseForm/UserReact18FormValidation';
+import UserListFetchClass from './3. FetchingAPIData/UserListFetchClass';
 import './App.css';
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
     <>
       <div>
         <h3>Test deploy in vercel!</h3>
-        <UserReact18FromValidation />
+        <UserListFetchClass />
       </div>
     </>
   );

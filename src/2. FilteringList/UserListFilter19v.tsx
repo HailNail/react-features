@@ -1,5 +1,4 @@
 import { ITEMS_PER_PAGE } from '../constants/PAGES';
-import SpinnerIcon from '../lib/SpinnerIcon';
 import useFilterListV19 from './hooks/useFilterListV19';
 
 const UserListFilter19v = () => {
@@ -21,28 +20,12 @@ const UserListFilter19v = () => {
         onChange={handleSearchChange}
       />
       <div style={{ position: 'relative', marginTop: '16px' }}>
-        {isPending && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 2,
-              color: 'hsl(228, 97%, 42%)',
-            }}
-          >
-            <SpinnerIcon /> {/* Ваша иконка или SVG */}
-          </div>
-        )}
         <p>Matches found: {filteredList.length}</p>
-
         <ul
           className="list"
           style={{
             opacity: isPending ? 0.4 : 1,
-            filter: isPending ? 'blur(1px)' : 'none',
-            transition: 'opacity 0.2s ease, filter 0.2s ease',
+            transition: 'opacity 0.2s ease',
             pointerEvents: isPending ? 'none' : 'auto',
           }}
         >
