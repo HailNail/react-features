@@ -41,7 +41,7 @@ const useUserForm = () => {
     if (!values.email.trim()) {
       newErrors.email = 'Email is required.';
     } else if (!values.email.trim().includes('@')) {
-      newErrors.email = 'Please provide a valid email';
+      newErrors.email = 'Please provide a valid email.';
     }
 
     return newErrors;
