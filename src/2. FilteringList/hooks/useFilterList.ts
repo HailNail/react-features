@@ -1,26 +1,36 @@
 import React, { useDeferredValue, useMemo } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import { USER_DATA } from '../../utils/generateLargeUserList';
+import type { ToRecord } from '../../types/MiddleTypes';
 
-const useFilterListWithPagination = () => {
+const useFilterList = <T extends ToRecord<T>>(
+  items: T[],
+  searchKeys: (keyof T)[],
+) => {
   const [inputValue, setInputValue] = useLocalStorage('search_term', '', 300);
-
   const deferred = useDeferredValue(inputValue);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
-  const filteredUsers = useMemo(() => {
-    const query = deferred.toLocaleLowerCase().trim();
-    return USER_DATA.filter(
-      (user) =>
-        user.name.toLocaleLowerCase().includes(query) ||
-        user.role.toLocaleLowerCase().includes(query),
-    );
-  }, [deferred]);
+  const keyDependency = searchKeys.join(',');
 
-  return { inputValue, handleSearchChange, filteredUsers };
+  const filteredItems = useMemo(() => {
+    console.log('Hell');
+    const query = deferred.toLocaleLowerCase().trim();
+    if (!query) return items;
+    const keys = keyDependency.split(',') as (keyof T)[];
+    return items.filter((item) =>
+      keys.some((key) => {
+        const value = item[key];
+        return (
+          value !== null && String(value).toLocaleLowerCase().includes(query)
+        );
+      }),
+    );
+  }, [deferred, items, keyDependency]);
+
+  return { inputValue, handleSearchChange, filteredItems };
 };
 
-export default useFilterListWithPagination;
+export default useFilterList;
