@@ -1,4 +1,4 @@
-import SearchUsersClass from './4. SearchUsersAPI/SearchUsersClass';
+import SearchUsersReact18v from './4. SearchUsersAPI/SearchUsersReact18v';
 import './App.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
         {/*   <h3>Test deploy in vercel!</h3>
         <p>{count}</p>
         <button onClick={handleClick}>Click</button> */}
-        <SearchUsersClass />
+        <SearchUsersReact18v />
       </div>
     </>
   );
