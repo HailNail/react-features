@@ -1,5 +1,5 @@
+import SearchUsersClass from './4. SearchUsersAPI/SearchUsersClass';
 import './App.css';
-import UserListFetchReact19v from './3. FetchingAPIData/UserListFetchReact19v';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         {/*   <h3>Test deploy in vercel!</h3>
         <p>{count}</p>
         <button onClick={handleClick}>Click</button> */}
-        <UserListFetchReact19v />
+        <SearchUsersClass />
       </div>
     </>
   );
