@@ -6,3 +6,8 @@ export interface State {
   isLoading: boolean;
   error: string | null;
 }
+
+export interface State19v {
+  data: User[];
+  error: string | null;
+}
