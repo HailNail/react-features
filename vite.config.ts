@@ -8,5 +8,6 @@ export default defineConfig({
     environment: 'jsdom', // Имитирует браузер
     globals: true,        // Разрешает использовать функции вроде describe и test без импорта
     setupFiles: './src/tests/setup.ts', // Файл первичной настройки
+    pool: "threads"
   },
 })
