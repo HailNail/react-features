@@ -27,6 +27,9 @@ jobs:
       - name: Run ESLint (Проверка на баги)
         run: npm run lint
 
+      - name: Run Unit Tests
+        run: npm run test
+
       - name: Run Prettier Check (Проверка форматирования)
         run: npm run format:check
 
