@@ -10,12 +10,12 @@ type LoginModalProps = {
 };
 
 const LoginModal = ({ onClose }: LoginModalProps) => {
-  const [state, action] = useActionState(loginAction, {
+  const [state, action, isPending] = useActionState(loginAction, {
     error: null,
     success: false,
   });
   const modalContentRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(modalContentRef, onClose);
+  useOnClickOutside(modalContentRef, isPending ? () => {} : onClose);
   useEffect(() => {
     if (!state.error && state.success) {
       onClose();
@@ -25,7 +25,7 @@ const LoginModal = ({ onClose }: LoginModalProps) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal} ref={modalContentRef}>
-        <button onClick={onClose} aria-label="Close">
+        <button onClick={onClose} aria-label="Close" disabled={isPending}>
           X
         </button>
         <h2>Sign In</h2>
