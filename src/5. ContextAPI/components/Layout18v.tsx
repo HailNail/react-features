@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AuthContext, ThemeContext } from '../contexts/Context18v';
+import { AuthContextExperimental, ThemeContext } from '../contexts/Context18v';
 
 const Layout18v = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState('dark');
@@ -11,9 +11,9 @@ const Layout18v = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <AuthContext.Provider value={{ user, setUser }}>
+      <AuthContextExperimental.Provider value={{ user, setUser }}>
         {children}
-      </AuthContext.Provider>
+      </AuthContextExperimental.Provider>
     </ThemeContext.Provider>
   );
 };

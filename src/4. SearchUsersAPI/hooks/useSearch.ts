@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import useDebounce from '../../hooks/useDebounce';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useDebounce from '../../helperHooks/useDebounce';
+import useLocalStorage from '../../helperHooks/useLocalStorage';
 import getHttpErrorMessage from '../../utils/fetchErrors';
 import type { User } from '../../types/UserTypes';
 

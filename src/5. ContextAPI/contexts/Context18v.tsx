@@ -1,8 +1,9 @@
 import { createContext } from 'react';
 import type {
-  AuthContextType,
+  AuthContextExperimentalType,
   ThemeContextType,
 } from '../../types/ContextTypes';
 
 export const ThemeContext = createContext<ThemeContextType | null>(null);
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContextExperimental =
+  createContext<AuthContextExperimentalType | null>(null);

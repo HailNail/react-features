@@ -1,6 +1,6 @@
 import { useActionState, useEffect } from 'react';
 import useUserForm19v from './hooks/useUserForm19v';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from '../helperHooks/useLocalStorage';
 import type { FormState } from '../types/FormTypes';
 
 const UserReact19FormValidation = () => {

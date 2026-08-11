@@ -1,18 +1,23 @@
-import Layout18v from './5. ContextAPI/components/Layout18v';
-import LevelOne from './5. ContextAPI/components/LevelOne18v';
-import './App.css';
+import './App.module.css';
+import { useAuth } from './hooks/useAuth';
+import useLocalStorage from './helperHooks/useLocalStorage';
+import SpinnerIcon from './lib/SpinnerIcon';
+import Header from './components/Header/Header';
+import LoginModal from './pages/Login/LoginModal';
 
 function App() {
+  const { user, initializing } = useAuth();
+  const [loginOpen, setLoginOpen] = useLocalStorage('modal_open', false);
+
+  if (initializing) {
+    return <SpinnerIcon />;
+  }
+
   return (
     <>
-      <div>
-        {/*   <h3>Test deploy in vercel!</h3>
-        <p>{count}</p>
-        <button onClick={handleClick}>Click</button> */}
-        <Layout18v>
-          <LevelOne />
-        </Layout18v>
-      </div>
+      <Header user={user} onLogin={() => setLoginOpen(true)} />
+      {/* <Feed user={user} /> */}
+      {loginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
     </>
   );
 }

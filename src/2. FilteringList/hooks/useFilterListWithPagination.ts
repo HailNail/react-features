@@ -1,5 +1,5 @@
 import React, { useDeferredValue, useMemo, useState } from 'react';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useLocalStorage from '../../helperHooks/useLocalStorage';
 import { USER_DATA } from '../../utils/generateLargeUserList';
 import { ITEMS_PER_PAGE } from '../../constants/PAGES';
 

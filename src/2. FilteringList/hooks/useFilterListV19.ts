@@ -1,6 +1,6 @@
 import { useState, useTransition } from 'react';
 import { USER_DATA } from '../../utils/generateLargeUserList';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useLocalStorage from '../../helperHooks/useLocalStorage';
 import { ITEMS_PER_PAGE } from '../../constants/PAGES';
 
 const useFilterListV19 = () => {

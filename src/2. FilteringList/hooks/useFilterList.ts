@@ -1,5 +1,5 @@
 import React, { useDeferredValue, useMemo } from 'react';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useLocalStorage from '../../helperHooks/useLocalStorage';
 import type { ToRecord } from '../../types/MiddleTypes';
 
 const useFilterList = <T extends ToRecord<T>>(

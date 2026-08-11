@@ -1,7 +1,7 @@
 import { startTransition, useActionState, useEffect } from 'react';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useLocalStorage from '../../helperHooks/useLocalStorage';
 import { searchUsersAction } from '../utils/searchUsersAction';
-import useDebounce from '../../hooks/useDebounce';
+import useDebounce from '../../helperHooks/useDebounce';
 
 const useSearch19 = () => {
   const [searchTerm, setSearchTerm] = useLocalStorage('search-term', '');

@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react';
 
-export interface AuthContextType {
+export interface AuthContextExperimentalType {
   user: { name: string; role: string } | null;
   setUser: Dispatch<SetStateAction<{ name: string; role: string }>>;
 }
