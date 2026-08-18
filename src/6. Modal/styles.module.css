@@ -1,0 +1,57 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  min-width: 20rem;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  background-color: none;
+  border: none;
+  font-size: 1.125em;
+  cursor: pointer;
+}
+
+.parentComponent {
+  overflow: hidden;
+  padding: 1.25rem;
+  border: 2px solid red;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1.125rem;
+}
+
+.content {
+  padding: 1rem 0;
+}
+
+.nativeModal {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+}
