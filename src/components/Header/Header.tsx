@@ -3,14 +3,17 @@ import { signOut } from '../../api/auth';
 import styles from './Header.module.css';
 import { useState } from 'react';
 import SpinnerIcon from '../../lib/SpinnerIcon';
+import useLocalStorage from '../../helperHooks/useLocalStorage';
+import LoginModal from '../../pages/Login/LoginModal';
 
 interface HeaderProps {
   user: User | null;
-  onLogin: () => void;
 }
 
-const Header = ({ user, onLogin }: HeaderProps) => {
+const Header = ({ user }: HeaderProps) => {
   const [loggingOut, setLoggingOut] = useState(false);
+    const [loginOpen, setLoginOpen] = useLocalStorage('modal_open', false);
+  
   const handleSignOut = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
@@ -31,8 +34,13 @@ const Header = ({ user, onLogin }: HeaderProps) => {
           {loggingOut ? <SpinnerIcon /> : 'Logout'}
         </button>
       ) : (
-        <button onClick={onLogin}>Login</button>
+        <button onClick={() => setLoginOpen(true)}>Login</button>
       )}
+
+       <LoginModal 
+          isOpen={loginOpen} 
+          onClose={() => setLoginOpen(false)} 
+        />
     </header>
   );
 };

@@ -11,3 +11,16 @@
   padding: 1rem;
   border-radius: 0.75rem;
 }
+
+.modal {
+  position: relative;
+  width: min(400px, calc(100% - 32px));
+  padding: 1.5rem;
+  background: #eee;
+  border-radius: 0.75rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
