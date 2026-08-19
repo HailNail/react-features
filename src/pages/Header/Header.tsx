@@ -4,7 +4,7 @@ import styles from './Header.module.css';
 import { useState } from 'react';
 import SpinnerIcon from '../../lib/SpinnerIcon';
 import useLocalStorage from '../../helperHooks/useLocalStorage';
-import LoginModal from '../../pages/Login/LoginModal';
+import LoginModal from '../../components/LoginComponents/LoginModal';
 
 interface HeaderProps {
   user: User | null;

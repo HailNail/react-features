@@ -1,18 +1,11 @@
 import './App.module.css';
 import { useAuth } from './hooks/useAuth';
 import SpinnerIcon from './lib/SpinnerIcon';
-import Header from './components/Header/Header';
-import { useEffect } from 'react';
-import { getPosts } from './api/posts';
+import Feed from './pages/Feed/Feed';
+import Header from './pages/Header/Header';
 
 function App() {
   const { user, initializing } = useAuth();
-
-  useEffect(() => {
-    getPosts()
-      .then((posts) => console.log(posts))
-      .catch((error) => console.error(error));
-  }, []);
 
   if (initializing) {
     return <SpinnerIcon />;
@@ -21,7 +14,7 @@ function App() {
   return (
     <>
       <Header user={user} />
-      {/* <Feed user={user} /> */}
+      <Feed />
     </>
   );
 }

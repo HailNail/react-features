@@ -1,11 +1,16 @@
 import { supabase } from '../lib/supabase';
 import type { Post } from '../types';
 
-export const getPosts = async (): Promise<Post[]> => {
+const PAGE_SIZE = 10;
+
+export const getPosts = async (page: number): Promise<Post[]> => {
+  const from = page * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
   const { data, error } = await supabase
     .from('posts')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false })
+    .range(from, to);
 
   if (error) {
     throw error;

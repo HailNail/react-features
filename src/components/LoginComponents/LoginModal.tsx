@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Modal from '../../components/Modal/Modal';
-import LoginForm from '../../components/LoginComponents/LoginForm';
+import Modal from '../Modal/Modal';
+import LoginForm from './LoginForm';
 
 
 type LoginModalProps = {
